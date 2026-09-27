@@ -1,0 +1,336 @@
+/* Hide default Streamlit chrome for app-like feel */
+[data-testid="stSidebar"] {
+    display: none;
+}
+
+[data-testid="stHeader"] {
+    background: transparent;
+}
+
+.block-container {
+    padding-top: 1rem;
+    padding-bottom: 5.5rem;
+    max-width: 720px;
+}
+
+@media (min-width: 768px) {
+    .block-container {
+        padding-bottom: 2rem;
+        padding-top: 4.5rem;
+    }
+}
+
+/* Bottom navigation */
+.bottom-nav-container {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #ffffff;
+    border-top: 1px solid #E2E8F0;
+    padding: 0.4rem 0.5rem calc(0.4rem + env(safe-area-inset-bottom));
+    z-index: 999;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.06);
+}
+
+@media (min-width: 768px) {
+    .bottom-nav-container {
+        top: 0;
+        bottom: auto;
+        border-top: none;
+        border-bottom: 1px solid #E2E8F0;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+        padding: 0.5rem 1rem;
+    }
+}
+
+.bottom-nav-container [data-testid="column"] {
+    padding: 0 2px !important;
+}
+
+.bottom-nav-container a {
+    text-decoration: none !important;
+}
+
+.bottom-nav-container [data-testid="stPageLink-NavLink"] {
+    width: 100%;
+    min-height: 48px;
+    border-radius: 12px;
+    font-size: 0.7rem;
+    padding: 0.35rem 0.2rem;
+    border: none;
+    background: transparent;
+    color: #64748B !important;
+}
+
+.bottom-nav-container [data-testid="stPageLink-NavLink"]:hover {
+    background: #F1F5F9;
+    color: #4F46E5 !important;
+}
+
+.bottom-nav-container [data-testid="stPageLink-NavLink"][aria-current="page"] {
+    background: #EEF2FF;
+    color: #4F46E5 !important;
+    font-weight: 600;
+}
+
+/* Prominent Add Expense button (center nav item) */
+.bottom-nav-container [data-testid="column"]:nth-child(2) [data-testid="stPageLink-NavLink"] {
+    background: #4F46E5;
+    color: #ffffff !important;
+    font-weight: 600;
+    min-height: 52px;
+    border-radius: 14px;
+    font-size: 0.72rem;
+}
+
+.bottom-nav-container [data-testid="column"]:nth-child(2) [data-testid="stPageLink-NavLink"]:hover {
+    background: #4338CA;
+    color: #ffffff !important;
+}
+
+.bottom-nav-container [data-testid="column"]:nth-child(2) [data-testid="stPageLink-NavLink"][aria-current="page"] {
+    background: #4338CA;
+    color: #ffffff !important;
+}
+
+/* Cards */
+.summary-card {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+    border: 1px solid #E2E8F0;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+.total-spend {
+    font-size: 2.75rem;
+    font-weight: 700;
+    color: #1E293B;
+    line-height: 1.1;
+    margin: 0;
+}
+
+.total-spend-label {
+    font-size: 0.95rem;
+    color: #64748B;
+    margin-top: 0.25rem;
+}
+
+.month-header {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #1E293B;
+    margin-bottom: 1rem;
+}
+
+/* Budget progress */
+.budget-card {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 1.25rem;
+    margin-bottom: 1rem;
+    border: 1px solid #E2E8F0;
+}
+
+.budget-progress-track {
+    background: #E2E8F0;
+    border-radius: 999px;
+    height: 10px;
+    overflow: hidden;
+    margin: 0.75rem 0;
+}
+
+.budget-progress-fill {
+    height: 100%;
+    border-radius: 999px;
+    transition: width 0.3s ease;
+}
+
+.budget-stats {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    font-size: 0.85rem;
+    color: #64748B;
+}
+
+.budget-stat-value {
+    font-weight: 600;
+    color: #1E293B;
+}
+
+.budget-state-label {
+    font-size: 0.8rem;
+    font-weight: 500;
+    margin-top: 0.25rem;
+}
+
+.budget-no-set {
+    color: #64748B;
+    font-size: 0.9rem;
+    padding: 0.5rem 0;
+}
+
+/* Expense feed cards */
+.expense-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 0.875rem 1rem;
+    margin-bottom: 0.5rem;
+    border: 1px solid #E2E8F0;
+}
+
+.expense-card-left {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    min-width: 0;
+    flex: 1;
+}
+
+.expense-icon {
+    font-size: 1.5rem;
+    flex-shrink: 0;
+}
+
+.expense-details {
+    min-width: 0;
+}
+
+.expense-title {
+    font-weight: 600;
+    color: #1E293B;
+    font-size: 0.95rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.expense-meta {
+    font-size: 0.78rem;
+    color: #64748B;
+    margin-top: 0.15rem;
+}
+
+.expense-amount {
+    font-weight: 700;
+    color: #1E293B;
+    font-size: 0.95rem;
+    flex-shrink: 0;
+    margin-left: 0.5rem;
+}
+
+/* Category summary */
+.category-row {
+    margin-bottom: 0.75rem;
+}
+
+.category-row-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.35rem;
+    font-size: 0.9rem;
+}
+
+.category-label {
+    color: #1E293B;
+}
+
+.category-amount {
+    font-weight: 600;
+    color: #1E293B;
+}
+
+.category-bar-track {
+    background: #E2E8F0;
+    border-radius: 999px;
+    height: 6px;
+    overflow: hidden;
+}
+
+.category-bar-fill {
+    background: #4F46E5;
+    height: 100%;
+    border-radius: 999px;
+}
+
+/* Stat cards for insights */
+.stat-card {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 1rem;
+    border: 1px solid #E2E8F0;
+    margin-bottom: 0.75rem;
+}
+
+.stat-label {
+    font-size: 0.8rem;
+    color: #64748B;
+    margin-bottom: 0.25rem;
+}
+
+.stat-value {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #1E293B;
+}
+
+.stat-subtext {
+    font-size: 0.78rem;
+    color: #64748B;
+    margin-top: 0.25rem;
+}
+
+/* Empty states */
+.empty-state {
+    text-align: center;
+    padding: 2rem 1rem;
+    color: #64748B;
+}
+
+.empty-message {
+    font-size: 0.95rem;
+    margin: 0;
+}
+
+.empty-hint {
+    font-size: 0.85rem;
+    margin-top: 0.5rem;
+    color: #94A3B8;
+}
+
+/* Section headers */
+.section-header {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #1E293B;
+    margin: 1.25rem 0 0.75rem 0;
+}
+
+/* Settings list items */
+.settings-list-item {
+    padding: 0.5rem 0;
+    font-size: 0.95rem;
+    color: #1E293B;
+    border-bottom: 1px solid #F1F5F9;
+}
+
+/* Add expense primary button area */
+div[data-testid="stFormSubmitButton"] button[kind="primaryFormSubmit"] {
+    min-height: 52px;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 12px;
+}
+
+/* History edit card */
+.history-item-header {
+    font-weight: 600;
+    font-size: 0.95rem;
+}
