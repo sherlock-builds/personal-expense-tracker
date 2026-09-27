@@ -27,7 +27,7 @@ def render() -> None:
         st.success("Expense added successfully!")
         st.session_state.expense_added = False
 
-    with st.form("add_expense_form", clear_on_submit=False):
+    with st.form("add_expense_form", clear_on_submit=True):
         amount = st.number_input(
             "Amount (₹)",
             min_value=0.0,
@@ -60,7 +60,6 @@ def render() -> None:
                     st.error(error)
                 else:
                     st.session_state.expense_added = True
-                    _clear_form()
                     st.rerun()
 
 
