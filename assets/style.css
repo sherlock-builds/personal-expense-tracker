@@ -31,6 +31,16 @@ img[alt*="Streamlit" i] {
     display: none !important;
 }
 
+button[aria-label="Open"] svg path[fill="none"][d^="M0 0h24v24"],
+button[aria-label="Open"] svg path:first-child {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+    fill: transparent !important;
+    stroke: transparent !important;
+}
+
 .block-container {
     padding-top: 1rem;
     padding-bottom: 5.5rem;

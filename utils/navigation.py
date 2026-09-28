@@ -244,13 +244,20 @@ def apply_theme_css() -> None:
                 flex-shrink: 0 !important;
                 object-fit: contain !important;
             }
-            [data-testid="stSelectbox"] button[aria-label="Open"] > svg > path:first-of-type,
-            button[aria-label="Open"] > svg > path:first-of-type {
+            [data-testid="stSelectbox"] button[aria-label="Open"] svg path[fill="none"][d^="M0 0h24v24"],
+            button[aria-label="Open"] svg path[fill="none"][d^="M0 0h24v24"],
+            [data-testid="stSelectbox"] button[aria-label="Open"] svg path:first-child,
+            button[aria-label="Open"] svg path:first-child {
                 display: none !important;
+                visibility: hidden !important;
                 opacity: 0 !important;
+                pointer-events: none !important;
                 fill: transparent !important;
                 stroke: transparent !important;
+                background: transparent !important;
             }
+            [data-testid="stSelectbox"] button[aria-label="Open"] svg path[d*="M7.41"],
+            button[aria-label="Open"] svg path[d*="M7.41"],
             [data-testid="stSelectbox"] button[aria-label="Open"] > svg > path:last-of-type,
             [data-testid="stSelectbox"] button[aria-label="Open"] > svg > path:nth-of-type(2),
             button[aria-label="Open"] > svg > path:last-of-type,
@@ -345,6 +352,63 @@ def apply_theme_css() -> None:
             .stApp .stNumberInput label,
             .stApp .stTextArea label {
                 color: #111827 !important;
+            }
+            [data-testid="stSelectbox"] button[aria-label="Open"],
+            button[aria-label="Open"] {
+                background: transparent !important;
+                border: none !important;
+                border-left: none !important;
+                border-right: none !important;
+                width: 1.25rem !important;
+                min-width: 1.25rem !important;
+                max-width: 1.25rem !important;
+                height: 1.25rem !important;
+                min-height: 1.25rem !important;
+                max-height: 1.25rem !important;
+                padding: 0 !important;
+                margin: 0 !important;
+                border-radius: 0 !important;
+                box-shadow: none !important;
+                display: inline-flex !important;
+                align-items: center !important;
+                justify-content: center !important;
+            }
+            [data-testid="stSelectbox"] button[aria-label="Open"] > svg,
+            [data-testid="stSelectbox"] button[aria-label="Open"] > img,
+            button[aria-label="Open"] > svg,
+            button[aria-label="Open"] > img {
+                width: 1.25rem !important;
+                height: 1.25rem !important;
+                display: block !important;
+                background: transparent !important;
+                border-radius: 0 !important;
+                flex-shrink: 0 !important;
+                object-fit: contain !important;
+            }
+            [data-testid="stSelectbox"] button[aria-label="Open"] svg path[fill="none"][d^="M0 0h24v24"],
+            button[aria-label="Open"] svg path[fill="none"][d^="M0 0h24v24"],
+            [data-testid="stSelectbox"] button[aria-label="Open"] svg path:first-child,
+            button[aria-label="Open"] svg path:first-child {
+                display: none !important;
+                visibility: hidden !important;
+                opacity: 0 !important;
+                pointer-events: none !important;
+                fill: transparent !important;
+                stroke: transparent !important;
+                background: transparent !important;
+            }
+            [data-testid="stSelectbox"] button[aria-label="Open"] svg path[d*="M7.41"],
+            button[aria-label="Open"] svg path[d*="M7.41"],
+            [data-testid="stSelectbox"] button[aria-label="Open"] > svg > path:last-of-type,
+            [data-testid="stSelectbox"] button[aria-label="Open"] > svg > path:nth-of-type(2),
+            button[aria-label="Open"] > svg > path:last-of-type,
+            button[aria-label="Open"] > svg > path:nth-of-type(2),
+            [data-testid="stSelectbox"] button[aria-label="Open"] > img,
+            button[aria-label="Open"] > img {
+                fill: #1f2937 !important;
+                stroke: #1f2937 !important;
+                color: #1f2937 !important;
+                filter: none !important;
             }
             </style>
             """,
