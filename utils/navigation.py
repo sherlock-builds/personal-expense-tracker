@@ -204,28 +204,63 @@ def apply_theme_css() -> None:
             button[data-testid="stNumberInputStepUp"] svg,
             button[data-testid="stNumberInputStepDown"] svg,
             button[data-testid="stNumberInputStepUp"] path,
-            button[data-testid="stNumberInputStepDown"] path,
-            button[aria-label="Open"],
-            button[aria-label="Open"] svg,
-            button[aria-label="Open"] path,
-            [data-testid="stSelectbox"] button[aria-label="Open"],
-            [data-testid="stSelectbox"] button[aria-label="Open"] svg,
-            [data-testid="stSelectbox"] button[aria-label="Open"] path {
-                color: #e2e8f0 !important;
-                fill: #e2e8f0 !important;
-                stroke: #e2e8f0 !important;
-                border-color: #e2e8f0 !important;
+            button[data-testid="stNumberInputStepDown"] path {
+                color: #ffffff !important;
+                fill: #ffffff !important;
+                stroke: #ffffff !important;
+                border-color: transparent !important;
                 background: transparent !important;
+                box-shadow: none !important;
             }
-            button[data-testid="stNumberInputStepUp"] > svg,
-            button[data-testid="stNumberInputStepDown"] > svg,
+            [data-testid="stSelectbox"] button[aria-label="Open"],
+            button[aria-label="Open"] {
+                background: transparent !important;
+                border: none !important;
+                border-left: none !important;
+                border-right: none !important;
+                width: 1.25rem !important;
+                min-width: 1.25rem !important;
+                max-width: 1.25rem !important;
+                height: 1.25rem !important;
+                min-height: 1.25rem !important;
+                max-height: 1.25rem !important;
+                padding: 0 !important;
+                margin: 0 !important;
+                border-radius: 0 !important;
+                box-shadow: none !important;
+                display: inline-flex !important;
+                align-items: center !important;
+                justify-content: center !important;
+            }
+            [data-testid="stSelectbox"] button[aria-label="Open"] > svg,
+            [data-testid="stSelectbox"] button[aria-label="Open"] > img,
             button[aria-label="Open"] > svg,
-            button[aria-label="Open"] > svg > path,
-            button[data-testid="stNumberInputStepUp"] > svg > path,
-            button[data-testid="stNumberInputStepDown"] > svg > path {
-                color: #e2e8f0 !important;
-                fill: #e2e8f0 !important;
-                stroke: #e2e8f0 !important;
+            button[aria-label="Open"] > img {
+                width: 1.25rem !important;
+                height: 1.25rem !important;
+                display: block !important;
+                background: transparent !important;
+                border-radius: 0 !important;
+                flex-shrink: 0 !important;
+                object-fit: contain !important;
+            }
+            [data-testid="stSelectbox"] button[aria-label="Open"] > svg > path:first-of-type,
+            button[aria-label="Open"] > svg > path:first-of-type {
+                display: none !important;
+                opacity: 0 !important;
+                fill: transparent !important;
+                stroke: transparent !important;
+            }
+            [data-testid="stSelectbox"] button[aria-label="Open"] > svg > path:last-of-type,
+            [data-testid="stSelectbox"] button[aria-label="Open"] > svg > path:nth-of-type(2),
+            button[aria-label="Open"] > svg > path:last-of-type,
+            button[aria-label="Open"] > svg > path:nth-of-type(2),
+            [data-testid="stSelectbox"] button[aria-label="Open"] > img,
+            button[aria-label="Open"] > img {
+                fill: #ffffff !important;
+                stroke: #ffffff !important;
+                color: #ffffff !important;
+                filter: brightness(0) invert(1) !important;
             }
             div[data-testid="stForm"] {
                 background: #0f172a !important;
