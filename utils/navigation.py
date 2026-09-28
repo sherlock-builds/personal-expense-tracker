@@ -446,7 +446,16 @@ def render_bottom_nav() -> None:
 
 def month_selector(key_prefix: str = "global") -> tuple[int, int]:
     """Render month/year selector and return selected values."""
+    from datetime import date
+
     from utils.constants import MONTH_NAMES
+
+    if "selected_month" not in st.session_state:
+        st.session_state.selected_month = date.today().month
+    if "selected_year" not in st.session_state:
+        st.session_state.selected_year = date.today().year
+    if "dark_mode" not in st.session_state:
+        st.session_state.dark_mode = True
 
     month_index = st.session_state.selected_month - 1
 
