@@ -2,7 +2,13 @@
 
 import streamlit as st
 
-from utils.navigation import init_session_state, load_css, render_bottom_nav
+from utils.navigation import (
+    apply_theme_css,
+    init_session_state,
+    load_css,
+    render_bottom_nav,
+    render_theme_toggle,
+)
 
 st.set_page_config(
     page_title="Expense Tracker",
@@ -13,6 +19,8 @@ st.set_page_config(
 
 load_css()
 init_session_state()
+render_theme_toggle()
+apply_theme_css()
 
 home_page = st.Page("pages/home.py", title="Home", icon="🏠", default=True)
 add_page = st.Page("pages/add_expense.py", title="Add Expense", icon="➕")

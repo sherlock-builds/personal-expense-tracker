@@ -134,11 +134,11 @@ def render() -> None:
                 ),
                 unsafe_allow_html=True,
             )
-            col1, col2 = st.columns(2)
-            with col1:
+            action_cols = st.columns(2, gap="xxsmall")
+            with action_cols[0]:
                 if st.button("Edit", key=f"edit_{expense['id']}", use_container_width=True):
                     edit_expense_dialog(expense)
-            with col2:
+            with action_cols[1]:
                 if st.button("Delete", key=f"delete_{expense['id']}", use_container_width=True):
                     delete_expense_dialog(expense)
 
