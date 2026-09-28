@@ -91,6 +91,10 @@ def render() -> None:
     st.markdown('<div class="section-header">Spending by Category</div>', unsafe_allow_html=True)
     cat_df = category_chart_data(expenses)
     if not cat_df.empty:
+        is_dark = st.session_state.get("dark_mode", False)
+        bg_color = "#0f172a" if is_dark else "#ffffff"
+        text_color = "#e2e8f0" if is_dark else "#111827"
+        grid_color = "#334155" if is_dark else "#E5E7EB"
         palette = [
             "#4F81BD",
             "#5EC2D9",
@@ -113,8 +117,9 @@ def render() -> None:
             showlegend=False,
             height=260,
             width=360,
-            paper_bgcolor="white",
-            plot_bgcolor="white",
+            paper_bgcolor=bg_color,
+            plot_bgcolor=bg_color,
+            font=dict(color=text_color),
         )
         fig.update_traces(
             textposition="inside",
@@ -128,6 +133,10 @@ def render() -> None:
     st.markdown('<div class="section-header">Daily Spending</div>', unsafe_allow_html=True)
     trend_df = daily_spending_trend(expenses)
     if not trend_df.empty:
+        is_dark = st.session_state.get("dark_mode", False)
+        bg_color = "#0f172a" if is_dark else "#ffffff"
+        text_color = "#e2e8f0" if is_dark else "#111827"
+        grid_color = "#334155" if is_dark else "#E5E7EB"
         min_amount = float(trend_df["amount"].min()) if not trend_df.empty else 0
         max_amount = float(trend_df["amount"].max()) if not trend_df.empty else 0
         if max_amount == min_amount:
@@ -160,19 +169,29 @@ def render() -> None:
         fig.update_layout(
             margin=dict(l=24, r=20, t=20, b=20),
             height=280,
-            paper_bgcolor="white",
-            plot_bgcolor="white",
+            paper_bgcolor=bg_color,
+            plot_bgcolor=bg_color,
             xaxis_title="",
             yaxis_title="",
-            xaxis=dict(showgrid=False, tickfont=dict(size=10)),
+            xaxis=dict(
+                showgrid=False,
+                tickfont=dict(size=10, color=text_color),
+                title_font=dict(color=text_color),
+                linecolor=grid_color,
+                tickcolor=text_color,
+            ),
             yaxis=dict(
                 showgrid=True,
-                gridcolor="#E5E7EB",
+                gridcolor=grid_color,
                 zeroline=False,
-                tickfont=dict(size=10),
+                tickfont=dict(size=10, color=text_color),
+                title_font=dict(color=text_color),
+                linecolor=grid_color,
+                tickcolor=text_color,
             ),
             bargap=0.35,
             showlegend=False,
+            font=dict(color=text_color),
         )
         st.plotly_chart(fig, use_container_width=True)
 
