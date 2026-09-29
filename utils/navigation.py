@@ -19,406 +19,313 @@ def init_session_state() -> None:
         st.session_state.selected_month = today.month
     if "selected_year" not in st.session_state:
         st.session_state.selected_year = today.year
-    if "dark_mode" not in st.session_state:
-        st.session_state.dark_mode = True
+    st.session_state.dark_mode = True
 
 
 def apply_theme_css() -> None:
-    """Apply the current app theme across all pages."""
-    is_dark = st.session_state.get("dark_mode", False)
-    if is_dark:
-        st.markdown(
-            """
-            <style>
-            [data-testid="stAppViewContainer"] {
-                background: #0f172a;
-                color: #e2e8f0;
-            }
-            .block-container {
-                background: #0f172a;
-            }
-            .summary-card,
-            .stat-card,
-            .expense-card,
-            .budget-card,
-            .stButton > button,
-            .stSelectbox > div,
-            .stTextInput > div,
-            .stNumberInput > div,
-            .stDateInput > div,
-            .stTextArea > div,
-            .stRadio > div,
-            .stCheckbox > div,
-            .stContainer,
-            .stDataFrame,
-            .stTabs,
-            div[data-testid="stForm"],
-            div[data-testid="stForm"] > div,
-            [data-testid="stBaseInputContainer"],
-            [data-testid="stBaseInputContainer"] > div {
-                background: #111827 !important;
-                border-color: #334155 !important;
-                color: #e2e8f0 !important;
-            }
-            .total-spend,
-            .total-spend-label,
-            .stat-label,
-            .stat-value,
-            .stat-subtext,
-            .expense-title,
-            .expense-meta,
-            .expense-amount,
-            .category-label,
-            .category-amount,
-            .budget-stat-value,
-            .empty-message,
-            .empty-hint,
-            .section-header,
-            .settings-list-item,
-            .history-item-header,
-            .month-header,
-            .stApp h1,
-            .stApp h2,
-            .stApp h3,
-            .stApp p,
-            .stApp span,
-            .stApp div {
-                color: #e2e8f0 !important;
-            }
-            .budget-progress-track,
-            .category-bar-track,
-            .stTextInput input,
-            .stSelectbox input,
-            .stDateInput input,
-            .stNumberInput input,
-            .stTextArea textarea,
-            .stTextInput > div > div,
-            .stSelectbox > div > div,
-            div[data-testid="stForm"] input,
-            div[data-testid="stForm"] textarea,
-            div[data-testid="stForm"] select,
-            [data-testid="stBaseInputContainer"],
-            [data-testid="stBaseInputContainer"] > div,
-            [data-testid="stBaseInputContainer"] input,
-            [data-testid="stBaseInputContainer"] textarea,
-            [data-testid="stBaseInputContainer"] select,
-            [data-testid="stTextInputRootElement"],
-            [data-testid="stTextInputRootElement"] input,
-            [data-testid="stNumberInputContainer"],
-            [data-testid="stNumberInputContainer"] input,
-            [data-testid="stNumberInputField"],
-            [data-testid="stDateInputField"],
-            [data-testid="stDateInputField"] input,
-            [data-testid="stSelectbox"] input,
-            [data-testid="stSelectbox"] [role="group"],
-            [data-testid="stSelectbox"] [role="combobox"],
-            [data-testid="stTextInputField"] {
-                background: #0f172a !important;
-                color: #e2e8f0 !important;
-                border-color: #475569 !important;
-            }
-            [data-testid="stBaseInputContainer"],
-            [data-testid="stTextInputRootElement"],
-            [data-testid="stNumberInputContainer"],
-            [data-testid="stDateInputField"],
-            [data-testid="stSelectbox"] [role="group"],
-            [data-testid="stSelectbox"] [role="combobox"],
-            [data-testid="stTextInputField"],
-            [data-testid="stNumberInputField"] {
-                border: 1px solid #475569 !important;
-                border-radius: 0.75rem !important;
-                box-shadow: none !important;
-                background: #0f172a !important;
-            }
-            [data-testid="stBaseInputContainer"] > div,
-            [data-testid="stBaseInputContainer"] > div > div,
-            [data-testid="stTextInputRootElement"] > div,
-            [data-testid="stTextInputRootElement"] > div > div,
-            [data-testid="stNumberInputContainer"] > div,
-            [data-testid="stNumberInputContainer"] > div > div,
-            [data-testid="stDateInputField"] > div,
-            [data-testid="stDateInputField"] > div > div,
-            [data-testid="stSelectbox"] [role="group"] > div,
-            [data-testid="stSelectbox"] [role="group"] > div > div {
-                background: transparent !important;
-                border: none !important;
-                box-shadow: none !important;
-            }
-            .stTextInput input::placeholder,
-            .stTextArea textarea::placeholder,
-            .stNumberInput input::placeholder,
-            .stDateInput input::placeholder,
-            .stSelectbox select::placeholder,
-            input::placeholder,
-            textarea::placeholder,
-            select::placeholder {
-                color: #dbeafe !important;
-                opacity: 1 !important;
-            }
-            .stTextInput input::-webkit-input-placeholder,
-            .stTextArea textarea::-webkit-input-placeholder,
-            .stNumberInput input::-webkit-input-placeholder,
-            .stDateInput input::-webkit-input-placeholder,
-            input::-webkit-input-placeholder,
-            textarea::-webkit-input-placeholder,
-            select::-webkit-input-placeholder {
-                color: #dbeafe !important;
-                opacity: 1 !important;
-            }
-            .stTextInput input::-moz-placeholder,
-            .stTextArea textarea::-moz-placeholder,
-            .stNumberInput input::-moz-placeholder,
-            .stDateInput input::-moz-placeholder,
-            input::-moz-placeholder,
-            textarea::-moz-placeholder,
-            select::-moz-placeholder {
-                color: #dbeafe !important;
-                opacity: 1 !important;
-            }
-            .stTextInput input:-ms-input-placeholder,
-            .stTextArea textarea:-ms-input-placeholder,
-            .stNumberInput input:-ms-input-placeholder,
-            .stDateInput input:-ms-input-placeholder,
-            input:-ms-input-placeholder,
-            textarea:-ms-input-placeholder,
-            select:-ms-input-placeholder {
-                color: #dbeafe !important;
-                opacity: 1 !important;
-            }
-            .stTextInput input,
-            .stTextArea textarea,
-            .stNumberInput input,
-            .stDateInput input,
-            .stSelectbox select,
-            div[data-testid="stForm"] input,
-            div[data-testid="stForm"] textarea,
-            div[data-testid="stForm"] select,
-            input,
-            textarea,
-            select {
-                -webkit-text-fill-color: #e2e8f0 !important;
-                color: #e2e8f0 !important;
-            }
-            button[data-testid="stNumberInputStepUp"],
-            button[data-testid="stNumberInputStepDown"],
-            button[data-testid="stNumberInputStepUp"] svg,
-            button[data-testid="stNumberInputStepDown"] svg,
-            button[data-testid="stNumberInputStepUp"] path,
-            button[data-testid="stNumberInputStepDown"] path {
-                color: #ffffff !important;
-                fill: #ffffff !important;
-                stroke: #ffffff !important;
-                border-color: transparent !important;
-                background: transparent !important;
-                box-shadow: none !important;
-            }
-            [data-testid="stSelectbox"] button[aria-label="Open"],
-            button[aria-label="Open"] {
-                background: transparent !important;
-                border: none !important;
-                border-left: none !important;
-                border-right: none !important;
-                width: 1.25rem !important;
-                min-width: 1.25rem !important;
-                max-width: 1.25rem !important;
-                height: 1.25rem !important;
-                min-height: 1.25rem !important;
-                max-height: 1.25rem !important;
-                padding: 0 !important;
-                margin: 0 !important;
-                border-radius: 0 !important;
-                box-shadow: none !important;
-                display: inline-flex !important;
-                align-items: center !important;
-                justify-content: center !important;
-            }
-            [data-testid="stSelectbox"] button[aria-label="Open"] > svg,
-            [data-testid="stSelectbox"] button[aria-label="Open"] > img,
-            button[aria-label="Open"] > svg,
-            button[aria-label="Open"] > img {
-                width: 1.25rem !important;
-                height: 1.25rem !important;
-                display: block !important;
-                background: transparent !important;
-                border-radius: 0 !important;
-                flex-shrink: 0 !important;
-                object-fit: contain !important;
-            }
-            [data-testid="stSelectbox"] button[aria-label="Open"] svg path[fill="none"][d^="M0 0h24v24"],
-            button[aria-label="Open"] svg path[fill="none"][d^="M0 0h24v24"],
-            [data-testid="stSelectbox"] button[aria-label="Open"] svg path:first-child,
-            button[aria-label="Open"] svg path:first-child {
-                display: none !important;
-                visibility: hidden !important;
-                opacity: 0 !important;
-                pointer-events: none !important;
-                fill: transparent !important;
-                stroke: transparent !important;
-                background: transparent !important;
-            }
-            [data-testid="stSelectbox"] button[aria-label="Open"] svg path[d*="M7.41"],
-            button[aria-label="Open"] svg path[d*="M7.41"],
-            [data-testid="stSelectbox"] button[aria-label="Open"] > svg > path:last-of-type,
-            [data-testid="stSelectbox"] button[aria-label="Open"] > svg > path:nth-of-type(2),
-            button[aria-label="Open"] > svg > path:last-of-type,
-            button[aria-label="Open"] > svg > path:nth-of-type(2),
-            [data-testid="stSelectbox"] button[aria-label="Open"] > img,
-            button[aria-label="Open"] > img {
-                fill: #ffffff !important;
-                stroke: #ffffff !important;
-                color: #ffffff !important;
-                filter: brightness(0) invert(1) !important;
-            }
-            div[data-testid="stForm"] {
-                background: #0f172a !important;
-                border: 1px solid #334155 !important;
-                border-radius: 1rem !important;
-                padding: 0.25rem 0 !important;
-            }
-            div[data-testid="stForm"] > div {
-                background: transparent !important;
-            }
-            .stHorizontalBlock:has(a[href]) {
-                background: #111827 !important;
-                border-top: 1px solid #334155 !important;
-            }
-            .stHorizontalBlock:has(a[href]) > .stColumn .stPageLink,
-            .stHorizontalBlock:has(a[href]) > .stColumn a[href] {
-                color: #cbd5e1 !important;
-            }
-            .stHorizontalBlock:has(a[href]) > .stColumn .stPageLink[aria-current="page"],
-            .stHorizontalBlock:has(a[href]) > .stColumn a[href][aria-current="page"] {
-                background: #1e293b !important;
-                color: #f8fafc !important;
-            }
-            div[data-testid="stVerticalBlockBorderWrapper"] {
-                border-color: #334155 !important;
-                background: #111827 !important;
-            }
-            </style>
-            """,
-            unsafe_allow_html=True,
-        )
-    else:
-        st.markdown(
-            """
-            <style>
-            [data-testid="stAppViewContainer"] {
-                background: #ffffff;
-                color: #111827;
-            }
-            .block-container {
-                background: #ffffff;
-            }
-            div[data-testid="stBaseInputContainer"],
-            div[data-testid="stBaseInputContainer"] > div,
-            .stTextInput > div,
-            .stTextInput > div > div,
-            .stSelectbox > div,
-            .stSelectbox > div > div,
-            .stDateInput > div,
-            .stDateInput > div > div,
-            .stNumberInput > div,
-            .stNumberInput > div > div,
-            .stTextArea > div,
-            .stTextArea > div > div,
-            div[data-baseweb="select"],
-            div[data-baseweb="select"] > div,
-            input,
-            textarea,
-            select {
-                border: 1px solid #d1d5db !important;
-                border-radius: 0.75rem !important;
-                background: #ffffff !important;
-                box-shadow: none !important;
-                color: #111827 !important;
-                box-sizing: border-box !important;
-            }
-            .stTextInput input::placeholder,
-            .stTextArea textarea::placeholder,
-            .stNumberInput input::placeholder,
-            .stDateInput input::placeholder,
-            .stSelectbox select::placeholder,
-            input::placeholder,
-            textarea::placeholder,
-            select::placeholder {
-                color: #64748b !important;
-                opacity: 1 !important;
-            }
-            .stApp label,
-            .stApp .stTextInput label,
-            .stApp .stSelectbox label,
-            .stApp .stDateInput label,
-            .stApp .stNumberInput label,
-            .stApp .stTextArea label {
-                color: #111827 !important;
-            }
-            [data-testid="stSelectbox"] button[aria-label="Open"],
-            button[aria-label="Open"] {
-                background: transparent !important;
-                border: none !important;
-                border-left: none !important;
-                border-right: none !important;
-                width: 1.25rem !important;
-                min-width: 1.25rem !important;
-                max-width: 1.25rem !important;
-                height: 1.25rem !important;
-                min-height: 1.25rem !important;
-                max-height: 1.25rem !important;
-                padding: 0 !important;
-                margin: 0 !important;
-                border-radius: 0 !important;
-                box-shadow: none !important;
-                display: inline-flex !important;
-                align-items: center !important;
-                justify-content: center !important;
-            }
-            [data-testid="stSelectbox"] button[aria-label="Open"] > svg,
-            [data-testid="stSelectbox"] button[aria-label="Open"] > img,
-            button[aria-label="Open"] > svg,
-            button[aria-label="Open"] > img {
-                width: 1.25rem !important;
-                height: 1.25rem !important;
-                display: block !important;
-                background: transparent !important;
-                border-radius: 0 !important;
-                flex-shrink: 0 !important;
-                object-fit: contain !important;
-            }
-            [data-testid="stSelectbox"] button[aria-label="Open"] svg path[fill="none"][d^="M0 0h24v24"],
-            button[aria-label="Open"] svg path[fill="none"][d^="M0 0h24v24"],
-            [data-testid="stSelectbox"] button[aria-label="Open"] svg path:first-child,
-            button[aria-label="Open"] svg path:first-child {
-                display: none !important;
-                visibility: hidden !important;
-                opacity: 0 !important;
-                pointer-events: none !important;
-                fill: transparent !important;
-                stroke: transparent !important;
-                background: transparent !important;
-            }
-            [data-testid="stSelectbox"] button[aria-label="Open"] svg path[d*="M7.41"],
-            button[aria-label="Open"] svg path[d*="M7.41"],
-            [data-testid="stSelectbox"] button[aria-label="Open"] > svg > path:last-of-type,
-            [data-testid="stSelectbox"] button[aria-label="Open"] > svg > path:nth-of-type(2),
-            button[aria-label="Open"] > svg > path:last-of-type,
-            button[aria-label="Open"] > svg > path:nth-of-type(2),
-            [data-testid="stSelectbox"] button[aria-label="Open"] > img,
-            button[aria-label="Open"] > img {
-                fill: #1f2937 !important;
-                stroke: #1f2937 !important;
-                color: #1f2937 !important;
-                filter: none !important;
-            }
-            </style>
-            """,
-            unsafe_allow_html=True,
-        )
-
-
-def render_theme_toggle() -> None:
-    """Render a global theme toggle on every page."""
-    st.toggle("Dark mode", key="dark_mode")
+    """Apply the app theme in dark mode only."""
+    st.session_state.dark_mode = True
+    st.markdown(
+        """
+        <style>
+        [data-testid="stAppViewContainer"] {
+            background: #0f172a;
+            color: #e2e8f0;
+        }
+        .block-container {
+            background: #0f172a;
+        }
+        .summary-card,
+        .stat-card,
+        .expense-card,
+        .budget-card,
+        .stButton > button,
+        .stSelectbox > div,
+        .stTextInput > div,
+        .stNumberInput > div,
+        .stDateInput > div,
+        .stTextArea > div,
+        .stRadio > div,
+        .stCheckbox > div,
+        .stContainer,
+        .stDataFrame,
+        .stTabs,
+        div[data-testid="stForm"],
+        div[data-testid="stForm"] > div,
+        [data-testid="stBaseInputContainer"],
+        [data-testid="stBaseInputContainer"] > div {
+            background: #111827 !important;
+            border-color: #334155 !important;
+            color: #e2e8f0 !important;
+        }
+        .total-spend,
+        .total-spend-label,
+        .stat-label,
+        .stat-value,
+        .stat-subtext,
+        .expense-title,
+        .expense-meta,
+        .expense-amount,
+        .category-label,
+        .category-amount,
+        .budget-stat-value,
+        .empty-message,
+        .empty-hint,
+        .section-header,
+        .settings-list-item,
+        .history-item-header,
+        .month-header,
+        .stApp h1,
+        .stApp h2,
+        .stApp h3,
+        .stApp p,
+        .stApp span,
+        .stApp div {
+            color: #e2e8f0 !important;
+        }
+        .budget-progress-track,
+        .category-bar-track,
+        .stTextInput input,
+        .stSelectbox input,
+        .stDateInput input,
+        .stNumberInput input,
+        .stTextArea textarea,
+        .stTextInput > div > div,
+        .stSelectbox > div > div,
+        div[data-testid="stForm"] input,
+        div[data-testid="stForm"] textarea,
+        div[data-testid="stForm"] select,
+        [data-testid="stBaseInputContainer"],
+        [data-testid="stBaseInputContainer"] > div,
+        [data-testid="stBaseInputContainer"] input,
+        [data-testid="stBaseInputContainer"] textarea,
+        [data-testid="stBaseInputContainer"] select,
+        [data-testid="stTextInputRootElement"],
+        [data-testid="stTextInputRootElement"] input,
+        [data-testid="stNumberInputContainer"],
+        [data-testid="stNumberInputContainer"] input,
+        [data-testid="stNumberInputField"],
+        [data-testid="stDateInputField"],
+        [data-testid="stDateInputField"] input,
+        [data-testid="stSelectbox"] input,
+        [data-testid="stSelectbox"] [role="group"],
+        [data-testid="stSelectbox"] [role="combobox"],
+        [data-testid="stTextInputField"] {
+            background: #0f172a !important;
+            color: #e2e8f0 !important;
+            border-color: #475569 !important;
+        }
+        [data-testid="stBaseInputContainer"],
+        [data-testid="stTextInputRootElement"],
+        [data-testid="stNumberInputContainer"],
+        [data-testid="stDateInputField"],
+        [data-testid="stSelectbox"] [role="group"],
+        [data-testid="stSelectbox"] [role="combobox"],
+        [data-testid="stTextInputField"],
+        [data-testid="stNumberInputField"] {
+            border: 1px solid #475569 !important;
+            border-radius: 0.75rem !important;
+            box-shadow: none !important;
+            background: #0f172a !important;
+        }
+        [data-testid="stBaseInputContainer"] > div,
+        [data-testid="stBaseInputContainer"] > div > div,
+        [data-testid="stTextInputRootElement"] > div,
+        [data-testid="stTextInputRootElement"] > div > div,
+        [data-testid="stNumberInputContainer"] > div,
+        [data-testid="stNumberInputContainer"] > div > div,
+        [data-testid="stDateInputField"] > div,
+        [data-testid="stDateInputField"] > div > div,
+        [data-testid="stSelectbox"] [role="group"] > div,
+        [data-testid="stSelectbox"] [role="group"] > div > div {
+            background: transparent !important;
+            border: none !important;
+            box-shadow: none !important;
+        }
+        .stTextInput input::placeholder,
+        .stTextArea textarea::placeholder,
+        .stNumberInput input::placeholder,
+        .stDateInput input::placeholder,
+        .stSelectbox select::placeholder,
+        input::placeholder,
+        textarea::placeholder,
+        select::placeholder {
+            color: #dbeafe !important;
+            opacity: 1 !important;
+        }
+        .stTextInput input::-webkit-input-placeholder,
+        .stTextArea textarea::-webkit-input-placeholder,
+        .stNumberInput input::-webkit-input-placeholder,
+        .stDateInput input::-webkit-input-placeholder,
+        input::-webkit-input-placeholder,
+        textarea::-webkit-input-placeholder,
+        select::-webkit-input-placeholder {
+            color: #dbeafe !important;
+            opacity: 1 !important;
+        }
+        .stTextInput input::-moz-placeholder,
+        .stTextArea textarea::-moz-placeholder,
+        .stNumberInput input::-moz-placeholder,
+        .stDateInput input::-moz-placeholder,
+        input::-moz-placeholder,
+        textarea::-moz-placeholder,
+        select::-moz-placeholder {
+            color: #dbeafe !important;
+            opacity: 1 !important;
+        }
+        .stTextInput input:-ms-input-placeholder,
+        .stTextArea textarea:-ms-input-placeholder,
+        .stNumberInput input:-ms-input-placeholder,
+        .stDateInput input:-ms-input-placeholder,
+        input:-ms-input-placeholder,
+        textarea:-ms-input-placeholder,
+        select:-ms-input-placeholder {
+            color: #dbeafe !important;
+            opacity: 1 !important;
+        }
+        .stTextInput input,
+        .stTextArea textarea,
+        .stNumberInput input,
+        .stDateInput input,
+        .stSelectbox select,
+        div[data-testid="stForm"] input,
+        div[data-testid="stForm"] textarea,
+        div[data-testid="stForm"] select,
+        input,
+        textarea,
+        select {
+            -webkit-text-fill-color: #e2e8f0 !important;
+            color: #e2e8f0 !important;
+        }
+        button[data-testid="stNumberInputStepUp"],
+        button[data-testid="stNumberInputStepDown"],
+        button[data-testid="stNumberInputStepUp"] svg,
+        button[data-testid="stNumberInputStepDown"] svg,
+        button[data-testid="stNumberInputStepUp"] path,
+        button[data-testid="stNumberInputStepDown"] path {
+            color: #ffffff !important;
+            fill: #ffffff !important;
+            stroke: #ffffff !important;
+            border-color: transparent !important;
+            background: transparent !important;
+            box-shadow: none !important;
+        }
+        [data-testid="stSelectbox"] button[aria-label="Open"],
+        button[aria-label="Open"] {
+            background: transparent !important;
+            border: none !important;
+            border-left: none !important;
+            border-right: none !important;
+            width: 1.25rem !important;
+            min-width: 1.25rem !important;
+            max-width: 1.25rem !important;
+            height: 1.25rem !important;
+            min-height: 1.25rem !important;
+            max-height: 1.25rem !important;
+            padding: 0 !important;
+            margin: 0 !important;
+            border-radius: 0 !important;
+            box-shadow: none !important;
+            display: inline-flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+        }
+        [data-testid="stSelectbox"] button[aria-label="Open"] > svg,
+        [data-testid="stSelectbox"] button[aria-label="Open"] > img,
+        button[aria-label="Open"] > svg,
+        button[aria-label="Open"] > img {
+            width: 1.25rem !important;
+            height: 1.25rem !important;
+            display: block !important;
+            background: transparent !important;
+            border-radius: 0 !important;
+            flex-shrink: 0 !important;
+            object-fit: contain !important;
+        }
+        [data-testid="stSelectbox"] button[aria-label="Open"] svg path[fill="none"][d^="M0 0h24v24"],
+        button[aria-label="Open"] svg path[fill="none"][d^="M0 0h24v24"],
+        [data-testid="stSelectbox"] button[aria-label="Open"] svg path:first-child,
+        button[aria-label="Open"] svg path:first-child {
+            display: none !important;
+            visibility: hidden !important;
+            opacity: 0 !important;
+            pointer-events: none !important;
+            fill: transparent !important;
+            stroke: transparent !important;
+            background: transparent !important;
+        }
+        [data-testid="stSelectbox"] button[aria-label="Open"] svg path[d*="M7.41"],
+        button[aria-label="Open"] svg path[d*="M7.41"],
+        [data-testid="stSelectbox"] button[aria-label="Open"] > svg > path:last-of-type,
+        [data-testid="stSelectbox"] button[aria-label="Open"] > svg > path:nth-of-type(2),
+        button[aria-label="Open"] > svg > path:last-of-type,
+        button[aria-label="Open"] > svg > path:nth-of-type(2),
+        [data-testid="stSelectbox"] button[aria-label="Open"] > img,
+        button[aria-label="Open"] > img {
+            fill: #ffffff !important;
+            stroke: #ffffff !important;
+            color: #ffffff !important;
+            filter: brightness(0) invert(1) !important;
+        }
+        div[data-testid="stForm"] {
+            background: #0f172a !important;
+            border: 1px solid #334155 !important;
+            border-radius: 1rem !important;
+            padding: 0.25rem 0 !important;
+        }
+        div[data-testid="stForm"] > div {
+            background: transparent !important;
+        }
+        .stHorizontalBlock:has(a[href]) {
+            background: #111827 !important;
+            border: none !important;
+            border-top: none !important;
+            border-bottom: none !important;
+            box-shadow: none !important;
+            bottom: 24px !important;
+            height: 58px !important;
+            padding: 0 !important;
+        }
+        .bottom-brand-bar {
+            position: fixed !important;
+            left: 0 !important;
+            right: 0 !important;
+            bottom: 0 !important;
+            height: 24px !important;
+            width: 100% !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            background: rgba(15, 23, 42, 0.98) !important;
+            color: #94a3b8 !important;
+            font-size: 0.58rem !important;
+            line-height: 1 !important;
+            letter-spacing: 0.06em !important;
+            text-transform: uppercase !important;
+            text-align: center !important;
+            padding: 0 !important;
+            margin: 0 !important;
+            border-top: 1px solid rgba(148, 163, 184, 0.15) !important;
+            box-sizing: border-box !important;
+            z-index: 2001 !important;
+        }
+        .stHorizontalBlock:has(a[href]) > .stColumn .stPageLink,
+        .stHorizontalBlock:has(a[href]) > .stColumn a[href] {
+            color: #cbd5e1 !important;
+        }
+        .stHorizontalBlock:has(a[href]) > .stColumn .stPageLink[aria-current="page"],
+        .stHorizontalBlock:has(a[href]) > .stColumn a[href][aria-current="page"] {
+            background: #1e293b !important;
+            color: #f8fafc !important;
+        }
+        div[data-testid="stVerticalBlockBorderWrapper"] {
+            border-color: #334155 !important;
+            background: #111827 !important;
+        }
+        </style>
+        """,
+        unsafe_allow_html=True,
+    )
 
 
 def render_bottom_nav() -> None:
@@ -442,6 +349,11 @@ def render_bottom_nav() -> None:
                     icon=icon,
                     use_container_width=True,
                 )
+
+    st.markdown(
+        '<div class="bottom-brand-bar">Developed by — Sherlock • Expense Tracker</div>',
+        unsafe_allow_html=True,
+    )
 
 
 def month_selector(key_prefix: str = "global") -> tuple[int, int]:
