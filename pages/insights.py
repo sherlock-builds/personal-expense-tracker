@@ -131,13 +131,15 @@ def render() -> None:
         )
         # Embed the plotly figure HTML inside the chart-card wrapper so
         # the chart is visually contained by the bordered rectangle.
-        st.markdown('<div class="chart-card">', unsafe_allow_html=True)
-        components.html(
-            fig.to_html(full_html=False, include_plotlyjs='cdn'),
-            height=340,
-            scrolling=False,
+        # Render the chart HTML wrapped fully inside the chart-card so
+        # Streamlit doesn't split the wrapper and the iframe into separate
+        # Streamlit elements.
+        chart_html = (
+            '<div class="chart-card">'
+            + fig.to_html(full_html=False, include_plotlyjs='cdn')
+            + '</div>'
         )
-        st.markdown('</div>', unsafe_allow_html=True)
+        components.html(chart_html, height=360, scrolling=False)
 
     st.markdown('<div class="section-header">Daily Spending</div>', unsafe_allow_html=True)
     trend_df = daily_spending_trend(expenses)
@@ -203,13 +205,12 @@ def render() -> None:
             font=dict(color=text_color),
         )
         # Embed bar chart inside the same card wrapper using components.html
-        st.markdown('<div class="chart-card">', unsafe_allow_html=True)
-        components.html(
-            fig.to_html(full_html=False, include_plotlyjs='cdn'),
-            height=420,
-            scrolling=False,
+        chart_html = (
+            '<div class="chart-card">'
+            + fig.to_html(full_html=False, include_plotlyjs='cdn')
+            + '</div>'
         )
-        st.markdown('</div>', unsafe_allow_html=True)
+        components.html(chart_html, height=460, scrolling=False)
 
 
 render()
