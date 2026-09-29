@@ -62,5 +62,10 @@ def render() -> None:
                     st.session_state.expense_added = True
                     st.rerun()
 
+        # In-page brand row (visible inside pages so it's present in the client DOM)
+        st.markdown(
+            '<div class="inpage-brand-row">Developed by — Sherlock • Expense Tracker</div>',
+            unsafe_allow_html=True,
+        )
 
 render()

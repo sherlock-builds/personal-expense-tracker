@@ -7,7 +7,6 @@ from utils.navigation import (
     init_session_state,
     load_css,
     render_bottom_nav,
-    render_theme_toggle,
 )
 
 st.set_page_config(
@@ -19,7 +18,6 @@ st.set_page_config(
 
 load_css()
 init_session_state()
-render_theme_toggle()
 apply_theme_css()
 
 home_page = st.Page("pages/home.py", title="Home", icon="🏠", default=True)
