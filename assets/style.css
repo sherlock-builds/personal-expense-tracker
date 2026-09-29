@@ -779,14 +779,4 @@ div[data-testid="stFormSubmitButton"] button[kind="primaryFormSubmit"] {
     }
 }
 
-/* In-page brand row (falls within content flow, not fixed) */
-.inpage-brand-row {
-    width: 100% !important;
-    text-align: center !important;
-    color: #94a3b8 !important;
-    font-size: 0.95rem !important;
-    margin: 1.25rem 0 1.5rem 0 !important;
-    padding: 0.6rem 0 !important;
-    height: 44px !important;
-    line-height: 1 !important;
-}
+/* (in-page brand row removed — fixed bottom bar retained) */

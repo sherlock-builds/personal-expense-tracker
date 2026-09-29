@@ -73,11 +73,7 @@ def render() -> None:
             unsafe_allow_html=True,
         )
 
-    # In-page brand row (visible inside pages so it's present in the client DOM)
-    st.markdown(
-        '<div class="inpage-brand-row">Developed by — Sherlock • Expense Tracker</div>',
-        unsafe_allow_html=True,
-    )
+    # (removed in-page brand row — fixed footer remains)
 
 
 render()
