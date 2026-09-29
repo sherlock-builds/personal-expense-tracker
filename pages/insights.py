@@ -128,7 +128,9 @@ def render() -> None:
             marker=dict(line=dict(color="#FFFFFF", width=2)),
             hovertemplate="<b>%{label}</b><br>Amount: ₹%{value:,.0f}<extra></extra>",
         )
+        st.markdown('<div class="chart-card">', unsafe_allow_html=True)
         st.plotly_chart(fig, use_container_width=True)
+        st.markdown('</div>', unsafe_allow_html=True)
 
     st.markdown('<div class="section-header">Daily Spending</div>', unsafe_allow_html=True)
     trend_df = daily_spending_trend(expenses)
@@ -193,7 +195,9 @@ def render() -> None:
             showlegend=False,
             font=dict(color=text_color),
         )
+        st.markdown('<div class="chart-card">', unsafe_allow_html=True)
         st.plotly_chart(fig, use_container_width=True)
+        st.markdown('</div>', unsafe_allow_html=True)
 
 
 render()
