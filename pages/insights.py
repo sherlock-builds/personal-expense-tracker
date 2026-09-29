@@ -1,6 +1,7 @@
 """Insights page — simple spending analytics."""
 
 import streamlit as st
+import streamlit.components.v1 as components
 import plotly.express as px
 
 from database import queries
@@ -128,8 +129,14 @@ def render() -> None:
             marker=dict(line=dict(color="#FFFFFF", width=2)),
             hovertemplate="<b>%{label}</b><br>Amount: ₹%{value:,.0f}<extra></extra>",
         )
+        # Embed the plotly figure HTML inside the chart-card wrapper so
+        # the chart is visually contained by the bordered rectangle.
         st.markdown('<div class="chart-card">', unsafe_allow_html=True)
-        st.plotly_chart(fig, use_container_width=True)
+        components.html(
+            fig.to_html(full_html=False, include_plotlyjs='cdn'),
+            height=340,
+            scrolling=False,
+        )
         st.markdown('</div>', unsafe_allow_html=True)
 
     st.markdown('<div class="section-header">Daily Spending</div>', unsafe_allow_html=True)
@@ -195,8 +202,13 @@ def render() -> None:
             showlegend=False,
             font=dict(color=text_color),
         )
+        # Embed bar chart inside the same card wrapper using components.html
         st.markdown('<div class="chart-card">', unsafe_allow_html=True)
-        st.plotly_chart(fig, use_container_width=True)
+        components.html(
+            fig.to_html(full_html=False, include_plotlyjs='cdn'),
+            height=420,
+            scrolling=False,
+        )
         st.markdown('</div>', unsafe_allow_html=True)
 
 
